@@ -1,7 +1,10 @@
-export default function Layout() {
+export default function Footer() {
   return (
     <>
-      <footer> &copy; {new Date().getFullYear()} Brian Lang </footer>
+      <footer>
+        <hr />
+        &copy; {new Date().getFullYear()} Brian Lang{' '}
+      </footer>
     </>
   );
 }

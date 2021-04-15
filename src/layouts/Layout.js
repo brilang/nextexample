@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import { signIn, signOut, useSession } from 'next-auth/client';
+import { signIn, useSession } from 'next-auth/client';
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
-import Login from 'src/components/Login';
+import styles from '../styles/Home.module.css';
 
 export default function Layout({ children, title = 'Next JS Example with Authentication' }) {
   const [session, loading] = useSession();
@@ -16,8 +16,22 @@ export default function Layout({ children, title = 'Next JS Example with Authent
       </Head>
       <Header />
 
-      {session && <main>{children}</main>}
-      {!session && <Login />}
+      <main>
+        {session && children}
+        {!session && (
+          <>
+            <a
+              href={`/api/auth/signin`}
+              className={styles.buttonPrimary}
+              onClick={(e) => {
+                e.preventDefault();
+                signIn();
+              }}>
+              Log in
+            </a>
+          </>
+        )}
+      </main>
       <Footer />
     </>
   );

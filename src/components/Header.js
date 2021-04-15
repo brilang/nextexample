@@ -1,26 +1,12 @@
 import { signIn, signOut, useSession } from 'next-auth/client';
 import styles from '../styles/Home.module.css';
 
-export default function Layout() {
+export default function Header() {
   const [session, loading] = useSession();
 
   return (
     <>
       <header>
-        {!session && (
-          <>
-            <span className={styles.notSignedInText}>You are not signed in</span>
-            <a
-              href={`/api/auth/signin`}
-              className={styles.buttonPrimary}
-              onClick={(e) => {
-                e.preventDefault();
-                signIn();
-              }}>
-              Sign in
-            </a>
-          </>
-        )}
         {session && (
           <>
             {session.user.image && (
@@ -45,6 +31,7 @@ export default function Layout() {
             </a>
           </>
         )}
+        <hr />
       </header>
     </>
   );
