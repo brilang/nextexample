@@ -1,13 +1,12 @@
 import { signIn, signOut, useSession } from 'next-auth/client';
 import styles from '../styles/Home.module.css';
 
-export default function Home() {
+export default function Layout() {
   const [session, loading] = useSession();
 
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>Next Auth Example!</h1>
+    <>
+      <header>
         {!session && (
           <>
             <span className={styles.notSignedInText}>You are not signed in</span>
@@ -46,7 +45,7 @@ export default function Home() {
             </a>
           </>
         )}
-      </main>
-    </div>
+      </header>
+    </>
   );
 }
